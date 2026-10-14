@@ -1,0 +1,47 @@
+!! externalbc input file. Readed in input_external_bc subroutine
+
+!!!****External input files****!!!
+.false.                                      !external_bc_vel: 				use external input file for boundary condition? - VELOCITIES (EULER-PHASE)
+"externalBC/regular_mesh_velocities.txt"                  !external_bc_vel_filepath: 		filepath
+81                                        !external_nface_vel_x:          nx - number of cells in x direction
+81                                        !external_nface_vel_z:          nz - number of cells in z direction
+
+.false.                                     !external_bc_temp:              use external input file for boundary condition? - TEMPERATURE
+"externalBC/temperature.txt"                !external_bc_temp_filepath:     filepath
+41                                          !external_nface_temp_x:         nx - number of cells in x direction
+41                                          !external_nface_temp_z:         nz - number of cells in z direction
+
+.false.                                     !external_bc_yk:                use external input file for boundary condition? - MASS FRACTION
+"externalBC/yk.txt"                         !external_bc_yk_filepath:       filepath
+41                                          !external_nface_yk_x:           nx - number of cells in x direction
+41                                          !external_nface_yk_z:           nz - number of cells in z direction
+
+.false.                                     !external_bc_dpdiam:            use external input file for boundary condition? - DPM_DIAMETER
+"externalBC/dpdiam.txt"                     !external_bc_dpdiam_filepath:   filepath
+41                                          !external_nface_dpdiam_x:       nx - number of cells in x direction
+41                                          !external_nface_dpdiam_z:       nz - number of cells in z direction
+
+.false.                                     !external_bc_dpvel:             use external input file for boundary condition? - DPM_VEL
+"externalBC/dpvel.txt"                      !external_bc_dpvel_filepath:    filepath
+41                                          !external_nface_dpvel_x:        nx - number of cells in x direction
+41                                          !external_nface_dpvel_z:        nz - number of cells in z direction
+
+.false.                                     !external_bc_dpmtemp:           use external input file for boundary condition? - DPM_TEMP
+"externalBC/dpmtemp.txt"                    !external_bc_dpmtemp_filepath:  filepath
+41                                          !external_nface_dpmtemp_x:      nx - number of cells in x direction
+41                                          !external_nface_dpmtemp_z:      nz - number of cells in z direction
+
+.false.                                     !external_bc_dpmflow:           use external input file for boundary condition? - DPM_VEL
+"externalBC/dpm_flow.txt"                   !external_bc_dpmflow_filepath:  filepath
+41                                          !external_nface_dpmflow_x:      nx - number of cells in x direction
+41                                          !external_nface_dpmflow_z:      nz - number of cells in z direction
+
+.false.                                     !external_bc_turb:              use external input file for boundary condition? - TURBULENCE
+"externalBC/turb.dat"                       !external_bc_turb_filepath:     filepath
+41                                          !external_nface_turb_x:         nx - number of cells in x direction
+41                                          !external_nface_turb_z:         nz - number of cells in z direction
+
+!!!****Common interpolation parameters for all variables****!!!
+0.0d0                                   !EXTERNAL_X_INIT:               initial x position for interpolation
+0.0d0                                 !EXTERNAL_Z_INIT:               initial z position for interpolation
+0.0125d0                                  !EXTERNAL_DELTA:                uniform grid spacing for interpolation

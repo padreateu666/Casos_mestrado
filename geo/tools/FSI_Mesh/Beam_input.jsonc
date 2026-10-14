@@ -1,0 +1,30 @@
+// -----------------------------------
+// Input File for Beam Mesh Generation
+// -----------------------------------
+{
+    "Filename":"Nastran.bdf",
+    
+    "Mesh":{
+        "N_ele": 8,
+        "Start_Point":[1.0, 0.0, 0.0],// [m]
+        "End_Point": [1.0, 200.0, 0.0],// [m]
+        "BC_nodes":[1,9] //Min=1 ; Max=N_ele+1
+    },
+    
+    "Geometry":{
+        "Area": 0.0238153,// [m²]
+        "I1": 0.2671e-3,// [m⁴]
+        "I2": 0.2671e-3,// [m⁴]
+        "I12": 0.0,// [m⁴]
+        "J": 0.5342e-3// [m⁴]
+    },
+    
+    "Static_Force":{
+        "Weight":{
+            "Density": 7850.0,// [kg/m³]
+            "Gravity":[0.0, 0.0, 9.81] // [m/s²]
+            },
+        "Extra": [0.0, 0.0, 0.0] // [N/m]
+    }
+    
+}

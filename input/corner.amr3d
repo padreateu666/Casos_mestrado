@@ -1,0 +1,10 @@
+!! corner input file. Readed in read_corner subroutine
+
+0                                       !proc_id
+1                                       !nclust/cl
+0.25  0.25  0.25 0.5 0.625 0.75         !c1,c2,c3,c4,c5,c6
+
+
+1                                       !proc_id
+1                                       !nclust/cl
+0.5 0.5 0.25 0.75 0.75 0.75             !c1,c2,c3,c4,c5,c6

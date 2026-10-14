@@ -1,0 +1,43 @@
+!! Energy input file. Readed in input_data_energy subroutine
+
+!!!****Energy control parameters****!!!
+.false.                                     !energyEquation:                            Use energy equation for temperature(energyEquation)
+.false.                                     !h_form:                                    (chemical + sensible enthalpy)
+2                                           !kind_energy_transp_solver:                 Energy solver: 1 PetsC , 2 Multigrid
+1                                           !temporal_discretization_model_energy:      Temporal discretisation of energy (1: semi-implicit, 2: implicit)
+"cubista"                                   !advection_model_energy:                    advection model temperature:  IMPLICIT: upwind1O, upwind2O, CDS, QUICK, QUICKhayase;    SEMI-IMPLICIT: upwind1O, upwind2O, Barton, MSOU, CDS, cubista, QUICK, QUICKhayase;
+.false.                                     !energy_cons:                               Use divergente form of Energy Equation
+1                                           !fluxConstr_ener:                           Strategy of the fluxes construction: 1-Traditional, 2-Malalasekera
+
+.false.                                     !dens_temp:                                 Use density calculation based on temperature
+10000000                                    !dt_pres:                                   Tempo para adicionar a variação da pressão na equação da eneriga
+.false.  0.d0  0.d0                         !trunc_energy,Tmin_truncate,Tmax_truncate:  Truncate temperature? [T/F] [T_min] [T_max]
+
+!#############Boussinesq aproximation ###########################
+.false.                                     !boussinesqApprox:                          Use de Boussinesq approximation (boussinesqApprox)
+300.0d0                                     !referTemp:                                 Temperature of reference of Boussinesq term(referTemp)
+.false.                                     !phase_changes:                             Phase change
+.false.                                     !eulerian_phase_change:                     Phase change with multicomponent
+0                                           !eulerian_pc_model:                         eulerian phase change model- 0: split, 1: source
+3000.0d0                                    !l_latente:                                 latent heat
+0.0d0                                       !saturation_temperatures:                   saturation temperature
+0.9d0                                       !Pr_t:                                      turbulent prandtl number
+
+!########### Physical properties ##############
+1295.0d0      4194.0d0                      !cp_phase_c,cp_phase_d:                     specific heat at continuous phase and disperse phase (cp_phase_c, cp_phase_d)
+2.37d-2       6.53d-1                       !k_phase_c,k_phase_d:                       thermal conductivity at continuous phase and disperse phase (k_phase_c, k_phase_d)
+
+!########### Temperature boundary conditions ##############
+0.0d0  1.0d0  0.0d0                         !tempbc_w%(alfa_bc,beta_bc,gamma_bc):       temp boundary condition at WEST face (alfa, beta, gamma)
+0.0d0  1.0d0  0.0d0                         !tempbc_e%(alfa_bc,beta_bc,gamma_bc):       temp boundary condition at EAST face (alfa, beta, gamma)
+0.0d0  1.0d0  0.0d0                         !tempbc_s%(alfa_bc,beta_bc,gamma_bc):       temp boundary condition at SOUTH face (alfa, beta, gamma)
+0.0d0  1.0d0  0.0d0                         !tempbc_n%(alfa_bc,beta_bc,gamma_bc):       temp boundary condition at NORTH face (alfa, beta, gamma)
+0.0d0  1.0d0  0.0d0                         !tempbc_b%(alfa_bc,beta_bc,gamma_bc):       temp boundary condition at BOTTOM face (alfa, beta, gamma)
+0.0d0  1.0d0  0.0d0                         !tempbc_t%(alfa_bc,beta_bc,gamma_bc):       temp boundary condition at TOP face (alfa, beta, gamma)
+!########### Enthalpy boundary conditions ##############
+0.0d0  1.0d0  0.0d0                         !hbc_w%(alfa_bc,beta_bc,gamma_bc):          h boundary condition at WEST face (alfa, beta, gamma)
+0.0d0  1.0d0  0.0d0                         !hbc_e%(alfa_bc,beta_bc,gamma_bc):          h boundary condition at EAST face (alfa, beta, gamma)
+0.0d0  1.0d0  0.0d0                         !hbc_s%(alfa_bc,beta_bc,gamma_bc):          h boundary condition at SOUTH face (alfa, beta, gamma)
+0.0d0  1.0d0  0.0d0                         !hbc_n%(alfa_bc,beta_bc,gamma_bc):          h boundary condition at NORTH face (alfa, beta, gamma)
+0.0d0  1.0d0  0.0d0                         !hbc_b%(alfa_bc,beta_bc,gamma_bc):          h boundary condition at BOTTOM face (alfa, beta, gamma)
+0.0d0  1.0d0  0.0d0                         !hbc_t%(alfa_bc,beta_bc,gamma_bc):          h boundary condition at TOP face (alfa, beta, gamma)

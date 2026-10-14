@@ -1,0 +1,12 @@
+!! Peng-Robinson Real-Gas EOS input file  (rg_eos.amr3d)
+
+!rg_eos_control
+.false.    ! use_rg_eos   — master switch
+.false.    ! do_vle_flash — enable Rachford-Rice VLE flash (set .true. for liquid injection)
+
+!rg_eos_extra_species
+0          ! n_extra  (0 = none; list 'NAME' Tc[K] Pc[Pa] omega below if > 0) ! 'C14H30'  693.0  1.60e6  0.643
+
+rg_eos_kij
+0          ! n_kij   (0 = all zeros; list 'NAMEi' 'NAMEj' kij below if > 0) ! 'N2'  'O2'   0.000
+

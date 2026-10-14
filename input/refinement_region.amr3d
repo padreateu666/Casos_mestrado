@@ -1,0 +1,6 @@
+!! refinement region input file. Readed in input_refinement_region subroutine
+
+1                                       !nofsr:                         number of regions
+
+3                                       !level_sr:                      levels it should be covered
+5.0d0 7.0d0 4.0d0 6.0d0 0.0d0 6.0d0     !xi, xf, yi, yf, zi, zf:        paralelepiped coordinates (xo, xmax, yo, ymax, zo, zmax)

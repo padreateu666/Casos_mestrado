@@ -1,0 +1,163 @@
+!! dpm input file. Readed in input_data_dpm subroutine
+
+!!!****DPM control parameters****!!!
+.false.                                             ! use_dpm [true|false].                             Default: false
+.false.  1.d0                                      ! dpm_subiter, dpm_dt_max:                          Turn on sub-iterations for particles, maximum time-step size for the dpm subiter
+0                                                   ! setnump:                                          Set number of particles: 0 - by mass flow rate, 1 - by value
+0.0d0                                             ! dpm_mass_flow:                                    Mass flow rate of real particles 
+0 9999999                                             	! dpm_nparticles, dpm_inject:                       Number of computational particles to be injected at each step, number of time steps to inject particles
+1                                                   ! nreal_part:                                       Number of real particles in one computacional particle
+2                                                   ! diamdp:                                           Diameter distribution: 0 - constant, 1 - normal, 2 - log_normal
+300.0d-6  50.0d-6                                   ! dpm_mean_diam, dpm_std_diam:                      Diameter distribution parameters [diameter mean, diameter standard deviation] choose values ​​in the same order of magnitude
+.false. 980.0d0                                             ! dpm_rho:                                          Specific mass *Or define expression in dpm_evap
+4.6d-4                                              ! dpm_mu:                                           Dynamic viscosity
+1                                                   ! initposd:                                         Initial position distribution: 0 - coordinates, 1 - circular inlet, 2 - rectangular inlet, 3 - annular inlet
+0.0d0   0.032d0   0.032d0                           ! dpm_x0, dpm_y0, dpm_z0:                           Initial position by coordinates [x0, y0, z0]
+0.0d0   0.0d0   0.0d0  1.0d0  0.0d0   1.0d0         ! inlet_(x1,x2,y1,y2,z1,z2):                        Circular/rectangular inlet plane [x1,x2] x [y1,y2] x [z1,z2] *Just planes parallel to xy, xz, yz
+0.032d0   0.032d0   1.5d-3  0.0d0                   ! inlet_center_(1,2), inlet_length_(1,2):           Circular/rectangular inlet geometry: [center_pos1, center_pos2] / [diameter_ex/length_edge1, diameter_in/length_edge2]
+.false.  0  0.0d0   0.0d0   0.0d0   0.0d0           ! dpm_initall, volume_type, volume_(1,2,3,r):       Initiate a volume of particles by value: .true. or .false / 0 - Cylinder [pos_1, pos_2], 1 - Sphere [xc, yc, zc, r], 2 - parallelepiped [center_posY, length_edgeY]
+0.0d0   0.0d0   0.0d0                               ! dpm_(u0,v0,w0):                                   Initial mean velocities [u0, v0, w0]
+0.0d0   0.0d0   0.0d0                               ! dpm_(u0_,v0_,w0_):                                Initial standard deviation velocities [u0_, v0_, w0_]
+0.0d0   0.0d0   0.0d0                               ! dpm_omega_(x0,y0,z0):                             Initial angular velocities [omega_x0, omega_y0, omega_z0]
+1   1   1   0   0                                   ! dpm_forces(1,2,3,4,5):                            Considered forces: 0 - Deactivate, 1 - Activate [Weigth, Buoyancy, Shear Lift Force, Rotational Lift Force, virtual mass] *Drag always considered
+2                                                   ! dpm_coupling:                                     Coupling type: 1-way coupling, 2-way coupling, 4-way coupling (deterministic DPM model), 5-DEM and 6-Adaptative coupling type
+0                                                   !dpm_collision_type
+
+!!!****Domain Boundaries control parameters****!!
+0   0   0   0   0   0                               ! dpm_boundary(1,2,3,4,5,6):                        Condition type for domain boundaries: 0 - Deletion, 1 - Reflection, 2 - Periodic, 3 - Free_slip at [WEST, EAST, SOUTH, NORTH, BOTTOM, TOP]
+0.1d0                                               ! dpm_wall_restitution_coeff:                       Wall-particle coefficient of restitution
+0.1d0                                               ! dpm_wall_friction_coeff:                          Wall-particle coefficient of dynamic friction
+0  0.0d0                                            ! dpm_wall_roughness, std_roughness:                Roughness surface: 0 - no, 1 - yes / and standard deviation of roughness
+1                                                   ! dpm_ib_use:                                       Wall-particle collision with a immersed geometry: 0 - no, 1 - yes
+1                                                   ! dpm_imb_io:                                       Particle position related to the immersed geometry: outside = -1, inside = 1
+
+!!!****Inter-particle collision model control parameters - 4-way coupling****!!
+1.0d0                                               ! dpm_restitution_coeff:                            Particles coefficient of restitution in 4-way coupling
+0.0d0                                               ! dpm_friction_coeff:                               Particles coefficient of dynamic friction in 4-way coupling
+
+!!!****DEM control parameters****!!!
+1                                                   ! dem_model:                                        1-Linear DEM model and 2-Monlinear DEM model
+4.0d6							                    ! dem_E:                                            Particle Young's modulus
+0.49d0							                    ! dem_poisson:                                      Particle poisson ratio
+0.3d0							                    ! dem_restcoef:                                     Particle restitution coefficient
+0.8d0							                    ! dem_fricstatcoef:                                 Particle static friction coefficient
+0.3d0							                    ! dem_fricrollcoef:                                 Particle rolling friction coefficient
+0.3d0							                    ! dem_dampviscratio:                                Particle rolling viscous damping ratio
+1.0d0                                               ! dem_cfl:                                          DEM Courant–Friedrichs–Lewy condition (CFL)
+
+!!!****Erosion model control parameters****!!!
+0        											! dpm_ib_erosion:                                   Erosion model: 0 - none, 1 - Oka et al. (2005)
+
+!!!****Dense model control parameters****!!!
+1                                                 ! dpm_dense_mode: 0-deactive 1- active
+
+!!!****Droplet evaporation model control parameters****!!!
+119034.71d0                                         ! dpm_p_amb:                                        Ambient pressure
+333.15d0                                            ! dpm_T0:                                           Initial droplet temperature
+4235.388142591582d0                                 ! dpm_cp:                                           Liquid specific heat capacity *Or define expression in dpm_evap
+hc_water_recap.yaml                                 ! dpm_cti_file:                                     CTI file
+gas                                         	    ! dpm_cant_mech:                                    Cantera mechanism
+H2O:1.0                                           !comp_droplet:                                      Initial droplet composition
+0                                                   ! dpm_evap_model:                                   Evaporation model: 0 - None, 1 - CEM, 2 - NEQ, 3 - ASM
+0 0                                                 ! dpm_heat_model:                                   Heating model: 0 - ITC, 1 - FTC, 2 - ETCi
+0 0                                                 ! dpm_diff_model:                                   Diffusion model: 0 - None, 1 - FD, 2 - ED
+0                                                   ! dpm_nush0_model
+0  0                                                 ! dpm_nLambda_T:                                    Number of terms in the series T(r,t)
+1   0                                                ! dpm_nLambda_Yl:                                    Number of terms in the series Yl,i(r,t) 
+.false.                                             ! dpm_debug
+0   1                                               ! dpm_ts_clamp, dpm_full_dd_solver:         T_s clamp: 0=disabled, 1=enabled; Full-DD solver: 0=fixed-point (original), 1=enhanced (adaptive omega+dT limit), 2=secant/Newton-Raphson
+1.0d-5                                              ! dpm_Dp_min:                               Minimum droplet diameter [m] for vanishing/deletion criterion
+1  1                                                ! dpm_spread_source, dpm_spread_kernel:     0=off/1=on; kernel: 1=hat, 2=Gauss, 3=cubic, 4=Roma
+0                                                   ! dpm_source_coupling_model: 0=legacy, 8=NL-CVODES, 9=ROS2
+0                                                   ! dpm_strang_splitting: 0=Lie S(dt)->E(dt), 1=Strang S(dt/2)->E(dt)->S(dt/2)
+1                                                   ! dpm_eps_source_scale: 0=off (legacy), 1=conservative S=raw/((1-dpm_eps)*V) (needs dense_model=1)
+1                                                   ! timing_breakdown: 0=off, 1=per-phase wallclock print each macro-step (rank 0)
+2                                                   ! dpm_cvodes_analytic_jac: 0=internal DQ, 1=cached FD, 2=analytic
+0                                                   ! dpm_cvodes_rhs_mode: 0=full RHS, 1=aggressive frozen mdot_k, 2=conservative linearized mdot_k (Tier-1 A1)
+0                                                   ! dpm_isat_active: 0=off, 1=on (DPM-ISAT acceleration of dpm_evap_rates)
+1.0d-3                                              ! dpm_isat_etol: ISAT error tolerance (default 1.0d-3)
+10000                                               ! dpm_isat_max_leaves: max table capacity per rank (~145 MB at 10k)
+100000                                              ! dpm_isat_stats_every: periodic stats cadence in queries (0=off, only shutdown summary)
+0                                                   ! dpm_cvodes_kill: 0=CVODES BDF (baseline), 1=Phase 1 closed-form linear (rhs_mode=1 only), 2=Phase 3 Picard-iterated closed-form (replaces BDF in mode 0; ISAT-amortized), 3=Phase 4 Option D ISAT (per-particle dt-integrated cell pass)
+0                                                   ! dpm_isat_step_active: 0=off, 1=on (Phase 4 Option D ISAT — separate instance for kill=3)
+1.0d-3                                              ! dpm_isat_step_etol: ISAT error tolerance for the dt-integrated cell pass
+2000                                                ! dpm_isat_step_max_leaves: max table capacity per rank (Phase 4b: lowered from 10000 to force LRU eviction)
+100000                                              ! dpm_isat_step_stats_every: periodic stats cadence in queries (0=off)
+1000                                                ! dpm_cvodes_max_steps: BDF mxstep (default 1000; was hardcoded 200)
+50                                                  ! dpm_isat_warmup_ct: post-restart ISAT bypass window (default 50; 0=disabled)
+0.05d0                                              ! dpm_inlet_ramp_time: linear ramp [s] for inlet spray flow; m_eff(t)=m_prescribed*min(1,t/tau); 0.0=disabled
+.true.                                              ! dpm_hybrid_regime_active: enable Hybrid Regime Classification (Type 1 LLE -> bypass; Type 2 water-depleted+runaway -> forced flash beta=1)
+1.0d-3                                              ! dpm_hybrid_yl_water_thresh: Yl_water below this signals water depletion (Type 2 detection)
+5.0d0                                               ! dpm_hybrid_T_margin: T_drop > T_gas + margin signals thermal runaway (Type 2 detection) [K]
+.true.                                              ! dpm_absorb_geom_active: enable absorbing geometric trigger (regime 3 forced flash for cell-saturating + anomalously-grown particles)
+0.5d0                                               ! dpm_absorb_geom_eps_p_thresh: local eps_p threshold (1 - eul.epsg > thresh) for cell-saturation detection
+2.0d0                                               ! dpm_absorb_geom_diam_ratio_thresh: Dp/Dp_init threshold for anomalous-growth detection
+
+
+!!!****Conversions Euler --> Lagrange parameters****!!!
+.false.                                              ! use_EulLag_trades:                                Use Conversions Euler --> Lagrange
+.false.  0.10d0 0.0d0 0.0d0                          ! forced_eul2lag, fpos:                             Use forced conversion euler to lagrangian, position :x, y, z
+50                                                  ! freq_Eul2Lag:                                     Number of time steps to convert Eulerian to Lagrangian 
+27.d0                                               ! cte_CutVol:                                       Cut volume - Eulerian to Lagrangian - cte multiplied by the finest dx*dy*dz
+.false.                                              ! use_shape_criteria:                               Use shape criteria - Herrmann (2010)
+.false.                                             ! use_berend_criteria_Eul2Lag:                      Use Berend filter criteria - Eulerian to Lagrangian
+0                                                   ! unperturbed:                                      1 - Ling unperturbed field; 2 - Berend unperturbed field
+-1.0d0                                               ! cte_distance_convE2L:                             Distance from IB NOT to convert - cte multiplied by the finest dx
+
+!!!****Conversions Lagrange --> Euler parameters****!!!
+.false.                                             ! use_LagEul_trades:                                Use Conversions Lagrange --> Euler
+50                                                  ! freq_Lag2Eul:                                     Number of time steps to convert Lagrangian to Eulerian
+-10.d0                                              ! cte_distance_convL2E:                             Distance from IB to convert - cte multiplied by the finest dx
+
+!!!****Droplet breakup model control parameters****!!!
+0.06604d0                                           ! dpm_sigma:                                        Surface tension (dpm_sigma)
+0                                                   ! dpm_breakup_model:                                Secondary breakup model: 0 - None, 1 - TAB, 2 - KHRT, 3 - SSD (dpm_breakup_model)
+
+!!!****dpm inlet test ****!!!
+.false.                                             ! test_dpm_inlet: 
+
+!!!****dpm n comp ****!!!
+1                                                   ! dpm_n_comp: 
+1                                                   ! dpm_n_layers:
+
+!!!****dpm coolprop ****!!!
+.false.                                             ! use_yaws_fluid_properties:
+"Water"                                             ! yaws_fluid_names:
+.false.                                             ! use_coolprop:
+Water                                               ! dpm_coolprop_fluid:
+
+!!!****dpm liq props****!!!
+0.325                                               ! dpm_liq_A_rho:
+0.27                                                ! dpm_liq_B_rho:
+0.23                                                ! dpm_liq_C_rho:        
+-22.417                                             ! dpm_liq_A_cp: 
+0.87697                                             ! dpm_liq_B_cp:
+-0.0025704                                          ! dpm_liq_C_cp: 
+2.4838E-06                                          ! dpm_liq_D_cp:        
+-0.35667                                            ! dpm_liq_A_k:
+0.005057                                            ! dpm_liq_B_k: 
+-6.1071E-06                                         ! dpm_liq_C_k:
+-11.6225                                            ! dpm_liq_A_mu:
+1.9490E03                                           ! dpm_liq_B_mu:
+2.1641E-02                                          ! dpm_liq_C_mu:
+-1.5990E-05                                         ! dpm_liq_D_mu: 
+	
+!!!****dpm surf props****!!!
+647.13                                              ! dpm_surf_Tcrit:
+220.55                                              ! dpm_surf_Pcrit:
+54.0                                                ! dpm_surf_A_Lv:
+0.34                                                ! dpm_surf_B_Lv:
+65.026                                              ! dpm_surf_A_pv:
+-3.8188d3                                           ! dpm_surf_B_pv:
+-21.684                                             ! dpm_surf_C_pv:
+1.0387d-2                                           ! dpm_surf_D_pv:
+1.0206d-14                                          ! dpm_surf_E_pv:
+
+!!!*dpm henry props*!!!
+0.0d0  34.4d0  34.5d0  34.4d0  0.0d0                           ! dpm_surf_A_henry: ln(KH[Pa]) pre-exp; 0=disabled (C2H6 supercrit, H2O solvent)
+0.0d0  -4600.d0  -4800.d0  -5200.d0  0.0d0                     ! dpm_surf_B_henry: ln(KH[Pa]) T-coeff [K]
+
+!!!****dpm lennard parameters****!!!
+.false.                                             !use_lennard: 
+3.458 3.621 6.27                                    !dpm_sigma:
+107.4 97.53 612.84                                  !dpm_epsilon:

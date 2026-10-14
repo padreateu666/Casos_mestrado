@@ -1,0 +1,32 @@
+// -----------------------------------
+// Input File for Plate Mesh Generation
+// -----------------------------------
+{
+    "Filename":"Nastran.bdf",
+    
+    "Mesh":{
+        // Counterclockwise numbering 
+        // Node:   4-----3   Side:  +--3--+
+        //         |     |         4|     |2
+        //         1-----2          +--1--+
+        "Point":[   [0.0,0.2,0.0], // Node 1 [m]
+                    [1.0,0.0,0.0], // Node 2 [m]
+                    [0.8,0.8,0.0], // Node 3 [m]
+                    [0.2,1.5,0.0]  // Node 4 [m]
+                ],
+        "Side":[ {
+                    "N_ele":5 // Elements on Side 1 (nodes 1-2)
+               },{
+                    "N_ele":5 // Elements on Side 2 (nodes 2-3)
+               } ]
+    },
+    
+    "Boundary_Condition":{
+        //Choose clamped BC on sides
+        "Side_1":true, // (nodes 1-2)
+        "Side_2":false, // (nodes 2-3)
+        "Side_3":true, // (nodes 3-4)
+        "Side_4":false  // (nodes 4-1)
+    }
+    
+}

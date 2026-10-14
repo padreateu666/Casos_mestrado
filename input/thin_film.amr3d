@@ -1,0 +1,7 @@
+!!!!!!!!!!!!!!!!!!!!!!! thin liquid film
+1                                               ! what kind of interpolation
+2                                               ! how many levels above lbot
+.true.                                          ! if I would iuse diferent times for film and core flow
+.true. .false. .false. .false. .false. .false.  ! which walls will have film W E S N B T
+2 0 0 0 0 0                                     ! which boundary condition for each wall W E S N B T
+.false.                                         ! is_ib_film
